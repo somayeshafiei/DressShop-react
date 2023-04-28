@@ -5,11 +5,12 @@ export type ProductDetail = {
   size?: string[];
   description?: string;
   url: string;
-  count?:number;
+  count?: number;
+  totalPrice?: number;
 };
-export type ButtonDetail={
+export type ButtonDetail = {
   onClick: () => void;
-  text?:string;
-  icon?:string;
-  classes:string;
-}
+  text?: string;
+  icon?: string;
+  classes: string;
+};
