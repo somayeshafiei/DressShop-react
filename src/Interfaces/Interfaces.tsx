@@ -14,3 +14,7 @@ export type ButtonDetail = {
   icon?: string;
   classes: string;
 };
+export type FilterType = {
+  order: string;
+  size: string;
+};

@@ -1,10 +1,11 @@
-import { ProductDetail } from '../Interfaces/Interfaces';
-import Button from './Button';
+import { ProductDetail } from "../Interfaces/Interfaces";
+import Button from "./Button";
 
 interface Props {
   item: ProductDetail;
+  handleDelete: (value: string) => void;
 }
-export default function CartItem({ item }: Props) {
+export default function CartItem({ item, handleDelete }: Props) {
   return (
     <div className="flex gap-4 items-center">
       <div className="w-16">
@@ -19,7 +20,7 @@ export default function CartItem({ item }: Props) {
           <Button
             text="remove"
             classes="bg-gray-200 border p-2 border-gray-400"
-            onClick={() => console.log(item.id)}
+            onClick={() => handleDelete(item.id)}
           />
         </div>
       </div>
