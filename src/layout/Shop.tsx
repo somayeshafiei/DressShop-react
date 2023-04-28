@@ -7,18 +7,15 @@ export default function Shop() {
   const [products, setProducts] = useState<ProductDetail[]>();
   const [productCounter, setProductCounter] = useState(0);
   useEffect(() => {
-    console.log(products);
-
     getData('/products').then((res) => {
       setProducts(res.data);
-      console.log(products);
       setProductCounter(res.data.length);
     });
   }, []);
   return (
-    <div className="w-[70%]">
+    <div className="w-full ">
       <Filter productCounter={productCounter} />
-      <div className="grid grid-cols-12 gap-6 py-8">
+      <div className="grid grid-cols-12 grid-row-1 gap-6 py-8 px-10 xl:px-0">
         {products?.map((product) => (
           <Card product={product} key={product.id} />
         ))}

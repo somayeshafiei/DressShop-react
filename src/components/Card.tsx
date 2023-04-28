@@ -5,7 +5,7 @@ interface Props {
 }
 export default function Card({ product }: Props) {
   return (
-    <div className="flex flex-col col-span-12 lg:col-span-6 xl:col-span-4">
+    <div className="flex flex-col col-span-12 md:col-span-6 xl:col-span-4">
       <div>
         <img src={product.url} alt="" />
       </div>

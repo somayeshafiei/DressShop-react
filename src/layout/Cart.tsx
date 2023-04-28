@@ -1,3 +1,3 @@
 export default function Cart() {
-  return <div className="w-[30%]">Cart</div>;
+  return <div className="w-full xl:w-[70%]">Cart</div>;
 }
