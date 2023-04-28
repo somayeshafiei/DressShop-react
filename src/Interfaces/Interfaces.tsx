@@ -5,6 +5,7 @@ export type ProductDetail = {
   size?: string[];
   description?: string;
   url: string;
+  count?:number;
 };
 export type ButtonDetail={
   onClick: () => void;

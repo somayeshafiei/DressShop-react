@@ -3,7 +3,10 @@ import Filter from './Filter';
 import getData from '../services/Api/getData';
 import { ProductDetail } from '../Interfaces/Interfaces';
 import Card from '../components/Card';
-export default function Shop() {
+interface Props{
+  handleCart:(value:ProductDetail)=>void
+}
+export default function Shop({handleCart}:Props) {
   const [products, setProducts] = useState<ProductDetail[]>();
   const [productCounter, setProductCounter] = useState(0);
   useEffect(() => {
@@ -17,7 +20,7 @@ export default function Shop() {
       <Filter productCounter={productCounter} />
       <div className="grid grid-cols-12 grid-row-1 gap-6 py-8 px-10 xl:px-0">
         {products?.map((product) => (
-          <Card product={product} key={product.id} />
+          <Card product={product} key={product.id} onClick={handleCart}/>
         ))}
       </div>
     </div>
