@@ -1,20 +1,20 @@
-import { useState, useEffect } from "react";
-import Filter from "./Filter";
-import getData from "../services/Api/getData";
-import { FilterType, ProductDetail } from "../Interfaces/Interfaces";
-import Card from "../components/Card";
+import { useState, useEffect } from 'react';
+import Filter from './Filter';
+import getData from '../services/Api/getData';
+import { FilterType, ProductDetail } from '../Interfaces/Interfaces';
+import Card from '../components/Card';
 interface Props {
   handleCart: (value: ProductDetail) => void;
 }
 export default function Shop({ handleCart }: Props) {
   const [filter, setFilter] = useState<FilterType>({
-    order: "Lowest",
-    size: "ALL",
+    order: 'Lowest',
+    size: 'ALL',
   });
   const [products, setProducts] = useState<ProductDetail[]>();
   const [productCounter, setProductCounter] = useState<number>(0);
   useEffect(() => {
-    getData("/products").then((res) => {
+    getData('/products').then((res) => {
       setProducts(res.data);
       setProductCounter(res.data.length);
     });
@@ -25,13 +25,20 @@ export default function Shop({ handleCart }: Props) {
   console.log(filter);
   const filtered = products?.filter((item) => item.size?.includes(filter.size));
   const sorted =
-    filter.order === "Highest"
+    filter.order === 'Highest'
       ? filtered?.sort((a, b) => b.price - a.price)
       : filtered?.sort((a, b) => a.price - b.price);
-
+  console.log(sorted);
+  function handleProductCounter() {
+    filtered && setProductCounter(filtered?.length);
+  }
   return (
     <div className="w-full ">
-      <Filter productCounter={productCounter} handleFilter={handleFilter} />
+      <Filter
+        productCounter={productCounter}
+        handleProductCounter={handleProductCounter}
+        handleFilter={handleFilter}
+      />
       <div className="grid grid-cols-12 grid-row-1 gap-6 py-8 px-10 xl:px-0">
         {sorted?.map((product) => (
           <Card product={product} key={product.id} onClick={handleCart} />
