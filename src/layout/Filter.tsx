@@ -3,21 +3,14 @@ import Select from '../components/Select';
 interface Props {
   productCounter: number;
   handleFilter: (value: FilterType) => void;
-  handleProductCounter: () => void;
 }
-
-export default function Filter({
-  productCounter,
-  handleFilter,
-  handleProductCounter,
-}: Props) {
+export default function Filter({ productCounter, handleFilter }: Props) {
   return (
     <div className="w-full border-b border-gray-400 p-3 flex justify-between">
       <div className="w-1/3">{productCounter} Products</div>
       <form
         onChange={(event) => {
           handleFilter(Object.fromEntries(new FormData(event.currentTarget)));
-          handleProductCounter();
         }}
         className="flex w-2/3 justify-between"
       >

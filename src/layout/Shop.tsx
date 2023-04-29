@@ -13,32 +13,28 @@ export default function Shop({ handleCart }: Props) {
   });
   const [products, setProducts] = useState<ProductDetail[]>();
   const [productCounter, setProductCounter] = useState<number>(0);
-  useEffect(() => {
-    getData('/products').then((res) => {
-      setProducts(res.data);
-      setProductCounter(res.data.length);
-    });
-  }, []);
   const handleFilter = function (obj: FilterType) {
     setFilter(obj);
   };
-  console.log(filter);
   const filtered = products?.filter((item) => item.size?.includes(filter.size));
   const sorted =
     filter.order === 'Highest'
       ? filtered?.sort((a, b) => b.price - a.price)
       : filtered?.sort((a, b) => a.price - b.price);
-  console.log(sorted);
-  function handleProductCounter() {
-    filtered && setProductCounter(filtered?.length);
-  }
+
+  useEffect(() => {
+    sorted
+      ? setProductCounter(sorted.length)
+      : getData('/products').then((res) => {
+          setProducts(res.data);
+          setProductCounter(res.data.length);
+        });
+  }, [sorted]);
+  console.log(filter);
+
   return (
     <div className="w-full ">
-      <Filter
-        productCounter={productCounter}
-        handleProductCounter={handleProductCounter}
-        handleFilter={handleFilter}
-      />
+      <Filter productCounter={productCounter} handleFilter={handleFilter} />
       <div className="grid grid-cols-12 grid-row-1 gap-6 py-8 px-10 xl:px-0">
         {sorted?.map((product) => (
           <Card product={product} key={product.id} onClick={handleCart} />

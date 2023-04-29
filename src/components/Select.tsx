@@ -1,13 +1,13 @@
 interface Props {
   options: string[];
-  selectName: string
+  selectName: string;
 }
 
-export default function Select({ options,selectName}: Props) {
+export default function Select({ options, selectName }: Props) {
   return (
     <>
       <select
-        name= {selectName}
+        name={selectName}
         id=""
         className=" rounded-sm px-1 border-gray-400 border-2"
       >
